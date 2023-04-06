@@ -81,10 +81,10 @@ Myśliwi i pracownicy salonu myśliwskiego
 
 Najstarszy Bachusik:
 Bachusik: Nieruchomix
-Wiek: 13 lat 3 miesięcy 0 dni
+Wiek: 1 lat 3 miesięcy 13 dni
 Data odsłonięcia: 2010-01-06
 
 Najmłodszy Bachusik:
 Bachusik: Śpioch
-Wiek: 0 lat 7 miesięcy 9 dni
+Wiek: 10 lat 7 miesięcy 0 dni
 Data odsłonięcia: 2022-08-28

@@ -10,9 +10,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -42,13 +40,14 @@ public class BachusikiApplication {
             System.out.println("\nLista miejsc i liczba figurek, które można w nich znaleźć: ");
             displayLocationsAndNumber(data);
             System.out.println("\nLista autorów Bachusików: ");
-            displayAuthors(data);
+            display(authors(data));
             System.out.println("\nLista fundatorów Bachusików: ");
-            displaySponsors(data);
+            display(sponsors(data));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             System.out.println("\nNajstarszy Bachusik:");
-            findEldest(data);
+            findEldest(data, formatter);
             System.out.println("\nNajmłodszy Bachusik:");
-            findYoungest(data);
+            findYoungest(data, formatter);
 
             printStream.close();
 
@@ -67,15 +66,17 @@ public class BachusikiApplication {
         return data.size();
     }
 
-    private static void displayLocations(List<String[]> data) {
-        List<String> locationsOfFigures = data.stream()
+    private static void display(List<String> list) {
+        for (String element : list) {
+            System.out.println(element);
+        }
+    }
+
+    private static List<String> locations(List<String[]> data) {
+        return data.stream()
                 .map(line -> line[1])
                 .distinct()
                 .toList();
-
-        for (String location : locationsOfFigures) {
-            System.out.println(location);
-        }
     }
 
     private static void displayLocationsAndNumber(List<String[]> data) {
@@ -89,66 +90,55 @@ public class BachusikiApplication {
         }
     }
 
-    private static void displayAuthors(List<String[]> data) {
-        List<String> authorsOfFigures = data.stream()
+    private static List<String> authors(List<String[]> data) {
+        return data.stream()
                 .map(line -> line[2])
                 .distinct()
                 .toList();
-
-        for (String author : authorsOfFigures) {
-            System.out.println(author);
-        }
     }
 
-    private static void displaySponsors(List<String[]> data) {
-        List<String> sponsorsOfFigures = data.stream()
+    private static List<String> sponsors(List<String[]> data) {
+        return data.stream()
                 .map(line -> line[3])
                 .distinct()
                 .toList();
-
-        for (String sponsor : sponsorsOfFigures) {
-            System.out.println(sponsor);
-        }
     }
 
-    private static void findYoungest(List<String[]> data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static void findYoungest(List<String[]> data, DateTimeFormatter formatter) {
         String[] mostRecent = data.stream()
                 .max(Comparator.comparing(line -> LocalDate.parse(line[4], formatter)))
                 .orElse(null);
 
         if (mostRecent != null) {
-            Period period = Period.between(LocalDate.now(), LocalDate.parse(mostRecent[4]));
-            int absoluteDays = Math.abs(period.getDays());
-            int absoluteMonths = Math.abs(period.getMonths());
-            int absoluteYears = Math.abs(period.getYears());
-
-            System.out.println("Bachusik: " + mostRecent[0]);
-            System.out.println("Wiek: " + absoluteYears + " lat " + absoluteMonths + " miesięcy " + absoluteDays + " dni");
-            System.out.println("Data odsłonięcia: " + mostRecent[4]);
+            ArrayList<Integer> date = parseToAbsoluteValue(mostRecent[4]);
+            displayInfoAboutBacchus(mostRecent, date.get(0), date.get(1), date.get(2));
         } else {
             System.out.println("Nie znaleziono najmłodszego Bachusika.");
         }
     }
 
-    private static void findEldest(List<String[]> data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static void findEldest(List<String[]> data, DateTimeFormatter formatter) {
         String[] oldest = data.stream()
                 .min(Comparator.comparing(line -> LocalDate.parse(line[4], formatter)))
                 .orElse(null);
 
         if (oldest != null) {
-            Period period = Period.between(LocalDate.now(), LocalDate.parse(oldest[4]));
-            int absoluteDays = Math.abs(period.getDays());
-            int absoluteMonths = Math.abs(period.getMonths());
-            int absoluteYears = Math.abs(period.getYears());
-
-            System.out.println("Bachusik: " + oldest[0]);
-            System.out.println("Wiek: " + absoluteYears + " lat " + absoluteMonths + " miesięcy " + absoluteDays + " dni");
-            System.out.println("Data odsłonięcia: " + oldest[4]);
+            ArrayList<Integer> date = parseToAbsoluteValue(oldest[4]);
+            displayInfoAboutBacchus(oldest, date.get(0), date.get(1), date.get(2));
         } else {
-            System.out.println("Nie znaleziono najmłodszego Bachusika.");
+            System.out.println("Nie znaleziono najstarszego Bachusika.");
         }
+    }
+
+    private static ArrayList<Integer> parseToAbsoluteValue(String date){
+        Period period = Period.between(LocalDate.now(), LocalDate.parse(date));
+        return new ArrayList<>(Arrays.asList(Math.abs(period.getDays()), Math.abs(period.getMonths()), Math.abs(period.getYears())));
+    }
+
+    private static void displayInfoAboutBacchus(String[] line, int year, int month, int day){
+        System.out.println("Bachusik: " + line[0]);
+        System.out.println("Wiek: " + year + " lat " + month + " miesięcy " + day + " dni");
+        System.out.println("Data odsłonięcia: " + line[4]);
     }
 
 }

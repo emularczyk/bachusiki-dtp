@@ -15,10 +15,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class BacchusService {
-    private List<Bacchus> bacchusList;
+    private static List<Bacchus> bacchusList;
+    private static Long id = 1L;
 
     @PostConstruct
-    public void loadDataFromCSV() throws IOException, CsvValidationException {
+    public static void loadDataFromCSV() throws IOException, CsvValidationException {
         String pathOfCSVFile = "Bachusiki.csv";
         InputStream inputStream = new FileInputStream(ResourceUtils.getFile(pathOfCSVFile));
         Reader reader = new InputStreamReader(inputStream);
@@ -27,7 +28,6 @@ public class BacchusService {
         bacchusList = new ArrayList<>();
 
         String[] line;
-        Long id = 1L;
         while ((line = csvReader.readNext()) != null) {
             Bacchus bacchus = new Bacchus(id, line[0], line[1], line[2], line[3], line[4]);
             bacchusList.add(bacchus);
@@ -39,29 +39,29 @@ public class BacchusService {
         return bacchusList;
     }
 
-    public List<Bacchus> createBacchus(String name, String location, String author, String sponsor, String date) {
+    public List<Bacchus> createBacchus(final Bacchus newBacchus) {
         Optional<Bacchus> lastId = getBacchusList()
                 .stream()
                 .reduce((first, last) -> last);
         if (lastId.isPresent()) {
             Long nextId = lastId.get().getId() + 1;
-            bacchusList.add(new Bacchus(nextId, name, location, author, sponsor, date));
+            bacchusList.add(new Bacchus(nextId, newBacchus.getName(), newBacchus.getLocation(), newBacchus.getAuthor(), newBacchus.getSponsor(), newBacchus.getDate()));
         }
         return bacchusList;
     }
 
-    public List<Bacchus> updateBacchus(Long id, String name, String location, String author, String sponsor, String date) {
+    public List<Bacchus> updateBacchus(final Long id, final Bacchus updatedBacchus) {
         Optional<Bacchus> optionalData = getBacchusList().stream()
                 .filter(bacchus -> bacchus.getId().equals(id))
                 .findFirst();
 
         if (optionalData.isPresent()) {
             Bacchus bacchusEdited = optionalData.get();
-            bacchusEdited.setName(name);
-            bacchusEdited.setLocation(location);
-            bacchusEdited.setAuthor(author);
-            bacchusEdited.setSponsor(sponsor);
-            bacchusEdited.setDate(date);
+            bacchusEdited.setName(updatedBacchus.getName());
+            bacchusEdited.setLocation(updatedBacchus.getLocation());
+            bacchusEdited.setAuthor(updatedBacchus.getAuthor());
+            bacchusEdited.setSponsor(updatedBacchus.getSponsor());
+            bacchusEdited.setDate(updatedBacchus.getDate());
 
             int index = bacchusList.indexOf(bacchusEdited);
             if (index != -1) {
@@ -72,7 +72,7 @@ public class BacchusService {
         return bacchusList;
     }
 
-    public List<Bacchus> deleteBacchus(Long id) {
+    public List<Bacchus> deleteBacchus(final Long id) {
         return bacchusList = getBacchusList().stream()
                 .filter(bacchus -> !bacchus.getId().equals(id))
                 .collect(Collectors.toList());

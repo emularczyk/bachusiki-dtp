@@ -1,0 +1,90 @@
+Liczba wszystkich figurek: 51
+
+Lista miejsc i liczba figurek, które można w nich znaleźć: 
+Sulechowska: 1
+Jedności: 1
+Kazimierza Wielkiego: 2
+Adama Mickiewicza: 2
+Licealna: 1
+Pod Topolami: 1
+Jana Kasprowicza: 1
+Aleja Plac Powstańców Wielkopolskich: 1
+Grzegorza Zarugiewicza: 1
+Jana Sobieskiego: 1
+Kupiecka: 3
+Aleja Niepodległości: 8
+Festiwalowa: 1
+Plac Bohaterów: 1
+Fryderyka Chopina: 1
+Krawiecka: 2
+Plac Pocztowy: 1
+Jedności 4a: 1
+Stefana Żeromskiego: 4
+Pod Filarami: 7
+Bohaterów Westerplatte: 1
+Plac Powstańców Wielkopolskich: 2
+Stary Rynek: 6
+Generała Władysława Sikorskiego: 1
+
+Lista autorów Bachusików: 
+Artur Wochniak
+Małgorzata Bukowicz
+Andrzej Moskaluk
+Robert Tomak
+
+Lista fundatorów Bachusików: 
+biuro nieruchomości Krzysztofa Golke
+Firma LUG
+miasto Zielona Góra
+Aldemed
+Myśliwi i sympatycy łowiectwa
+Zielonogórski Ośrodek Kultury
+firma LUG
+Związek Nauczycielstwa Polskiego
+Firma Capri-bis
+Myśliwi
+Elektrociepłownia Zielona Góra
+Czar PRL-u
+Zegarmistrz Wiesław Pierzyna
+Restauracja Ramzes
+ADB
+Fundacja Huberta Jerzego Wagnera
+Polskie Towarzystwo Ekonomiczne; ITSerwis; ProAlpha
+Jubiler Blicharski
+Kredyt Bank
+Energo Invest Broker S.A.
+Firma Gazstal
+Filharmonia Zielonogórska
+Lubuski Oddział Okręgowy Polskiego Czerwonego Krzyża
+Zielonogórska Palmiarnia
+projekt euroregionalny
+Firma LUG Light Factory
+Manufaktura zegarków Polpora
+Stowarzyszenie
+dyrektor Quest Europe Marzena Więcek
+Polski Związek Działkowców
+Piekarnia Rzepka
+Lasy Państwowe
+Bank BGŻ BNP Paribas
+Stowarzyszenie Dialog Współpraca Rozwój i miesięcznik Puls
+Myśliwi i miłośnicy nadodrzańskich borów i lasów
+OSP Kisielin
+Stowarzyszenie Syndrom
+firma transportowa Francepol
+Uniwersytet Zielonogórski
+Firma BIS
+Diament
+sieć sklepów AS
+Lubuski Teatr
+Związek Lubuskich Organizacji Pozarządowych
+Myśliwi i pracownicy salonu myśliwskiego
+
+Najstarszy Bachusik:
+Bachusik: Nieruchomix
+Wiek: 13 lat 3 miesięcy 0 dni
+Data odsłonięcia: 2010-01-06
+
+Najmłodszy Bachusik:
+Bachusik: Śpioch
+Wiek: 0 lat 7 miesięcy 9 dni
+Data odsłonięcia: 2022-08-28
